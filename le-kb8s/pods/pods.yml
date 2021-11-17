@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prueba1
+spec:
+  containers:
+    - name: contenedor1
+      image: nginx:alpine
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prueba2
+spec:
+  containers:
+    - name: contenedor2
+      image: nginx:alpine
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prueba3
+spec:
+  containers:
+    - name: contenedor3
+      image: nginx:alpine
+--- 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prueba4
+spec:
+  containers:
+    - name: python
+      image: python:3.6-alpine
+      command: [ 'sh', '-c', 'echo "estoy con el contenedor python1" > index.html && python -m http.server 8082' ]
+    - name: python2
+      image: python:3.6-alpine
+      command: [ 'sh', '-c', 'echo "estoy con el contenedor python2"> index.html && python -m http.server 8083' ]
