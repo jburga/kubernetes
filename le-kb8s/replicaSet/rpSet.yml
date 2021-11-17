@@ -1,0 +1,27 @@
+# aqui hablamos de replica set
+apiVersion: apps/v1 
+kind: ReplicaSet
+metadata:
+  name: replicate-set
+  labels:
+    app: le-k8s
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: le-k8s
+# terminamos nuestro replica set
+# aqui hablamos de pod
+  template:
+    metadata:
+      name: prueba-python
+      labels:
+        app: le-k8s
+    spec:
+      containers:
+        - name: python
+          image: python:3.6-alpine
+          command: [ 'sh', '-c', 'echo "estoy con el contenedor python1" > index.html && python -m http.server 8082' ]
+        - name: python2
+          image: python:3.6-alpine
+          command: [ 'sh', '-c', 'echo "estoy con el contenedor python2"> index.html && python -m http.server 8083' ] 
